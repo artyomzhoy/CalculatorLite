@@ -10,8 +10,6 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
-import java.util.Objects;
-
 public class CalculatorFragment extends Fragment {
 
     public static CalculatorFragment newInstance() {
@@ -176,7 +174,7 @@ public class CalculatorFragment extends Fragment {
             public void onClick(View v) {
                 text = mCalculatorInput.getText().toString();
                 if (!text.contains("."))
-                mCalculatorInput.setText(mCalculatorInput.getText() + ".");
+                    mCalculatorInput.setText(mCalculatorInput.getText() + ".");
             }
         });
 
@@ -225,18 +223,9 @@ public class CalculatorFragment extends Fragment {
                 value = Float.parseFloat(mCalculatorInput.getText().toString());
                 updateResult(operation);
                 operation = "/";
-
-//                if (value == 0) {
-//                    result = value;
-//                } else if (result == 0) {
-//                    result = value;
-//                } else {
-//                    result = result / value;
-//                }
                 text = Float.toString(result);
                 mCalculatorResult.setText(text);
                 mCalculatorInput.setText("0");
-
 
             }
         });
@@ -254,13 +243,6 @@ public class CalculatorFragment extends Fragment {
                 value = Float.parseFloat(mCalculatorInput.getText().toString());
                 updateResult(operation);
                 operation = "*";
-//                if (value == 0) {
-//                    result = value;
-//                } else if (result == 0) {
-//                    result = value;
-//                } else {
-//                    result = result * value;
-//                }
                 text = Float.toString(result);
                 mCalculatorResult.setText(text);
                 mCalculatorInput.setText("0");
@@ -279,10 +261,10 @@ public class CalculatorFragment extends Fragment {
                 value = Float.parseFloat(mCalculatorInput.getText().toString());
                 updateResult(operation);
                 operation = "-";
-//                result -= value;
                 text = Float.toString(result);
                 mCalculatorResult.setText(text);
                 mCalculatorInput.setText("0");
+
             }
         });
 
@@ -291,18 +273,15 @@ public class CalculatorFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-
                 if (mCalculatorInput.getText().toString().isEmpty()) {
                     mCalculatorInput.setText("0");
                 }
-                    value = Float.parseFloat(mCalculatorInput.getText().toString());
+                value = Float.parseFloat(mCalculatorInput.getText().toString());
                 updateResult(operation);
                 operation = "+";
-//                    result += value;
-                    text = Float.toString(result);
-                    mCalculatorResult.setText(text);
-                    mCalculatorInput.setText("0");
-
+                text = Float.toString(result);
+                mCalculatorResult.setText(text);
+                mCalculatorInput.setText("0");
 
             }
         });
@@ -321,6 +300,7 @@ public class CalculatorFragment extends Fragment {
                 text = Float.toString(result);
                 mCalculatorResult.setText(text);
                 mCalculatorInput.setText("0");
+
             }
         });
 
@@ -331,44 +311,50 @@ public class CalculatorFragment extends Fragment {
 
     }
 
-    public String updateResult (String operation) {
+    public String updateResult(String operation) {
 
         switch (operation) {
-            case ("+"): if (value == 0) {
-                result += value;
-            } else if (result == 0) {
-                result = value;
-            } else {
-                result = result + value;
-            }
+            case ("+"):
+                if (value == 0) {
+                    result += value;
+                } else if (result == 0) {
+                    result = value;
+                } else {
+                    result = result + value;
+                }
                 break;
-            case ("-"): if (value == 0) {
-                result -= value;
-            } else if (result == 0) {
-                result = result - value;
-            } else {
-                result = result - value;
-            }
+            case ("-"):
+                if (value == 0) {
+                    result -= value;
+                } else if (result == 0) {
+                    result = result - value;
+                } else {
+                    result = result - value;
+                }
                 break;
-            case ("/"): if (value == 0) {
-                result = value;
-            } else if (result == 0) {
-                result = value;
-            } else {
-                result = result / value;
-            }
+            case ("/"):
+                if (value == 0) {
+                    result = value;
+                } else if (result == 0) {
+                    result = value;
+                } else {
+                    result = result / value;
+                }
                 break;
-            case ("*"): if (value == 0) {
+            case ("*"):
+                if (value == 0) {
+                    result = value;
+                } else if (result == 0) {
+                    result = value;
+                } else {
+                    result = result * value;
+                }
+                break;
+            case ("="):
+                result = result;
+                break;
+            case (""):
                 result = value;
-            } else if (result == 0) {
-                result = value;
-            } else {
-                result = result * value;
-            }
-            break;
-            case ("="): result = result;
-            break;
-            case (""): result = value;
                 break;
         }
         return Float.toString(result);
